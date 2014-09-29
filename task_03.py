@@ -59,9 +59,9 @@ def convert_temperature(temperature, output_format='c'):
     temperature = temperature[0:-1]
     if input_type == output_format:
         result = temperature
-    elif input_type == 'c':
+    elif input_type == 'f' and output_format == 'c':
         result = fahrenheit_to_celsius(temperature)
-    elif input_type == 'f':
+    elif input_type == 'c' and output_format == 'f':
         result = celsius_to_fahrenheit(temperature)
     else:
         result = None
