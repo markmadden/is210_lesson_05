@@ -87,7 +87,6 @@ def compound_interest(principal, duration, rate, interval=12):
             None
     """
 
-    rate = Decimal(get_interest_rate(principal, duration, prequalification))
     total = Decimal(principal * ((1 + rate / interval) ** (
         interval * duration)))
     return Decimal(total)
