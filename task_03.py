@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""Task 03 Code."""
+"""Task 03 Code submitted to Github."""
 
 
 def celsius_to_fahrenheit(temperature):
