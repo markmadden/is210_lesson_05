@@ -5,14 +5,14 @@
 import decimal
 
 
-def get_interest_rate(principal, duration, prequalification):   
+def get_interest_rate(principal, duration, prequalification):
     """Returns interest rate as a decimal.
 
     Args:
         principal(int): A numeric type, the value of the principal.
         duration(int): A numeric type, the duration of the loan
         prequalification(bool): A boolean, whether or not the loan is pre-
-            qualified. 
+            qualified.
 
     Returns:
         A decimal form of the interest rate or None if none exists.
