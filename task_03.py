@@ -86,7 +86,7 @@ def convert_temperature(temperature, output_format='c'):
         if output_format == 'f':
             outputtemp = celsius_to_fahrenheit(temperature)
         elif output_format == 'c':
-            outputtemp = temperature    
+            outputtemp = temperature
         else:
             outputtemp = None
     else:
