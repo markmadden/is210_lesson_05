@@ -53,7 +53,7 @@ def convert_temperature(temperature, output_format='c'):
 
         Examples:
             >>> convert_temperature('32F', 'c')
-            0.0         
+            0.0
     """
     input_type = temperature[-1].lower()
     temperature = int(temperature[0:-1])
