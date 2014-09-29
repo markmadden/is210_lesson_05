@@ -18,7 +18,7 @@ def celsius_to_fahrenheit(temperature):
     """
 
     fahrenheit = (9 * temperature)/5 + 32.0
-    return float(fahrenheit)
+    return fahrenheit
 
 
 def fahrenheit_to_celsius(temperature):
@@ -36,7 +36,7 @@ def fahrenheit_to_celsius(temperature):
     """
 
     celsius = (5 * (temperature - 32))/9.0
-    return float(celsius)
+    return celsius
 
 
 def convert_temperature(temperature, output_format='c'):
@@ -63,6 +63,6 @@ def convert_temperature(temperature, output_format='c'):
         elif output_format is 'f':
             result = celsius_to_fahrenheit(temperature)
     elif type(temperature) is not str:
-        result = 'None'
+        result = None
 
     return result
