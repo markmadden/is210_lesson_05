@@ -5,7 +5,7 @@
 from decimal import Decimal
 
 
-def get_interest_rate(principal, duration, prequalification=True):
+def get_interest_rate(principal, duration, prequalification):
     """Finds the interest rate.
 
         Args:
@@ -64,7 +64,6 @@ def get_interest_rate(principal, duration, prequalification=True):
     else:
         rate = None
     return rate
-
 
 
 def compound_interest(principal, duration, rate, interval=12):
