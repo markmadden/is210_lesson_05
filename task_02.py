@@ -107,13 +107,13 @@ def calculate_total(principal, duration, prequalification):
             23173
 
             >>> calculate_total(1000000,20,False)
-            None          
+            None
     """
     rate = get_interest_rate(principal, duration, prequalification)
     total = None
     if rate is not None:
         total = round(compound_interest(
-                principal, duration, rate, interval=12))
+            principal, duration, rate, interval=12))
     return total
 
 
@@ -138,7 +138,6 @@ def calculate_interest(principal, duration, prequalification):
     interest = None
     rate = get_interest_rate(principal, duration, prequalification)
     if rate is not None:
-        total = compound_interest(principal, duration, rate, interval=12)
         interest = int(calculate_total(
             principal, duration, prequalification) - principal)
     return interest
