@@ -55,14 +55,15 @@ def convert_temperature(temperature, output_format='c'):
             >>> convert_temperature('32F', 'c')
             0.0          
     """
-    result = None
-    if type(temperature) is str:
-        if temperature[-1] is 'C' and 'F':
-            temperature = temperature[0:-1]
-            temperature = float(temperature)
-            if output_format is 'c':
-                result = fahrenheit_to_celsius(temperature)
-            elif output_format is 'f':
-                result = celsius_to_fahrenheit(temperature)
+    input_type = temperature[-1].lower()
+    temperature = temperature[0:-1]
+    if input_type == output_format:
+        result = temperature
+    elif input_type == 'c':
+        result = fahrenheit_to_celsius(temperature)
+    elif input_type == 'f':
+        result = celsius_to_fahrenheit(temperature)
+    else:
+        result = None
 
     return result
