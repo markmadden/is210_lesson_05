@@ -2,10 +2,11 @@
 # -*- coding: utf-8 -*-
 """Provides loan management features."""
 
-import decimal
 from decimal import Decimal
 
 def get_interest_rate(principal, duration, prequalification=True):
+
+
     """Finds the interest rate.
 
         Args:
@@ -22,7 +23,6 @@ def get_interest_rate(principal, duration, prequalification=True):
 
             >>> get_interest_rate(1000000,20,False)
             None
-            
     """
 
     if principal >= 0 and principal <= 199999:
@@ -64,12 +64,11 @@ def get_interest_rate(principal, duration, prequalification=True):
                 rate = Decimal('0.0262')
     else:
         rate = None
-        
     return rate
 
-
-
 def compound_interest(principal, duration, prequalification, interval=12):
+
+
     """Calculates the compound interest.
 
         Args:
@@ -83,19 +82,21 @@ def compound_interest(principal, duration, prequalification, interval=12):
             The compounded interest and principal(combined) as a numeric type.
 
         Examples:
-            >>> get_interest_rate(15000,12,True)
-            Decimal('0.0363')
+            >>> compound_interest(15000,12,True)
+            Decimal('23173.11294385677746184557196')
 
-            >>> get_interest_rate(1000000,20,False)
+            >>> compound_interest(1000000,20,False)
             None
-            
     """
 
-    rate = Decimal(get_interest_rate(principal, duration, prequalification))
-    total = Decimal(principal * ((1 + rate / interval) ** (interval * duration)))
+    intrate = Decimal(get_interest_rate(principal, duration, prequalification))
+    total = Decimal(principal * ((1 + intrate / interval) ** (
+        interval * duration)))
     return Decimal(total)
 
 def calculate_total(principal, duration, prequalification):
+
+
     """Returns the total amount owed over the life of the loan.
 
         Args:
@@ -108,21 +109,22 @@ def calculate_total(principal, duration, prequalification):
             there is no interest rate for the passed argument, returns None.
 
         Examples:
-            >>> get_interest_rate(15000,12,True)
-            Decimal('0.0363')
+            >>> calculate_total(15000,12,True)
+            23173
 
-            >>> get_interest_rate(1000000,20,False)
-            None
-            
+            >>> calculate_total(1000000,20,False)
+            None           
     """
     
-    rate = Decimal(get_interest_rate(principal, duration, prequalification))
+    intrate = Decimal(get_interest_rate(principal, duration, prequalification))
     total = Decimal(compound_interest(
         principal, duration, prequalification, interval=12))
     return int(total)
 
 
 def calculate_interest(principal, duration, prequalification):
+
+
     """Returns just the interest owed over the life of the loan.
 
         Args:
@@ -134,17 +136,14 @@ def calculate_interest(principal, duration, prequalification):
             Only the interest owed over the life of the loan as an integer.
 
         Examples:
-            >>> get_interest_rate(15000,12,True)
-            Decimal('0.0363')
+            >>> calculate_interest(15000,12,True)
+            8173
 
-            >>> get_interest_rate(1000000,20,False)
-            None
-            
+            >>> calculate_interest(1000000,20,False)
+            None           
     """
 
-    rate = Decimal(get_interest_rate(principal, duration, prequalification))
-    total = Decimal(compound_interest(
-        principal, duration, prequalification, interval=12))
+    intrate = Decimal(get_interest_rate(principal, duration, prequalification))
     interest = Decimal(calculate_total(
         principal, duration, prequalification) - principal)
     return int(interest)
