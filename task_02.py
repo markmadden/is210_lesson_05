@@ -4,10 +4,10 @@
 
 import decimal
 
+
 def get_interest_rate(principal, duration, prequalification):
 
     rate = None
-    
     if principal >= 0 and principal <= 199999:
         if duration >= 1 and duration <= 15:
             if prequalification:
@@ -60,11 +60,13 @@ def get_interest_rate(principal, duration, prequalification):
 
     return rate
 
+
 def compound_interest(principal, duration, rate, interval=12):
 
     total = principal * ((1 + decimal.Decimal(rate) / interval) ** (interval
                                                                     * duration))
     return total
+
 
 def calculate_total(principal, duration, prequalification):
 
@@ -75,6 +77,7 @@ def calculate_total(principal, duration, prequalification):
         return int(round(total_two))
     else:
         return None
+
 
 def calculate_interest(principal, duration, prequalification):
 
