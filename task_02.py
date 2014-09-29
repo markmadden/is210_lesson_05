@@ -23,7 +23,7 @@ def get_interest_rate(principal, duration, prequalification):
             >>> get_interest_rate(1000000,20,False)
             None
     """
-
+    rate = None
     if principal >= 0 and principal <= 199999:
         if duration >= 1 and duration <= 15:
             if prequalification:
@@ -61,12 +61,7 @@ def get_interest_rate(principal, duration, prequalification):
         elif duration >= 16 and duration <= 20:
             if prequalification:
                 rate = Decimal('0.0262')
-    else:
-        rate = None
-    if rate is None:
-        return None
-    else:
-        return rate
+    return rate
 
 
 def compound_interest(principal, duration, rate, interval=12):
