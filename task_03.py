@@ -56,6 +56,7 @@ def convert_temperature(temperature, output_format='c'):
             0.0            
     """
     temperature = temperature[0:-1]
+    temperature = float(temperature)
     if output_format is 'c':
         result = fahrenheit_to_celsius(temperature)
     elif output_format is 'f':
