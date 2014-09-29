@@ -64,7 +64,7 @@ def get_interest_rate(principal, duration, prequalification):
     else:
         rate = None
     if rate is None:
-        print 'None'
+        return None
     else:
         return rate
 
@@ -140,11 +140,11 @@ def calculate_interest(principal, duration, prequalification):
             >>> calculate_interest(1000000,20,False)
             None         
     """
-
+    interest = None
     rate = get_interest_rate(principal, duration, prequalification)
     total = None
     if rate is not None:
         total = compound_interest(principal, duration, rate, interval=12)
-        interest = calculate_total(
-            principal, duration, prequalification) - principal)
-    return int(interest)
+        interest = int(calculate_total(
+            principal, duration, prequalification) - principal))
+    return interest
