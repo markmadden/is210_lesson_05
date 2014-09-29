@@ -1,5 +1,5 @@
 #!usr/bin/env python
-# -*- codng: utf-8 -*-
+# -*- coding: utf-8 -*-
 """Basic function practice."""
 
 
@@ -16,7 +16,11 @@ def bool_to_str(bvalue, short=False):
             bvalue is True and "N" if bvalue is False.
 
         Examples:
+        >>> bool_to_str(True)
+        'Yes'
 
+        >>> bool_to_str(False, True)
+        'N'
     """
 
     if bvalue is True:
