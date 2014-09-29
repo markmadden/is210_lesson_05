@@ -17,8 +17,9 @@ def celsius_to_fahrenheit(temperature):
             107.6
     """
 
-    f = (9 * temperature)/5 + 32.0
-    return float(f)
+    fahrenheit = (9 * temperature)/5 + 32.0
+    return float(fahrenheit)
+
 
 def fahrenheit_to_celsius(temperature):
     """Converts degrees fahrenheit to degrees celsius.
@@ -34,8 +35,9 @@ def fahrenheit_to_celsius(temperature):
             5.0
     """
 
-    c = (5 * (temperature - 32))/9.0
-    return float(c)
+    celsius = (5 * (temperature - 32))/9.0
+    return float(celsius)
+
 
 def convert_temperature(temperature, output_format='c'):
     """Detects type of temperature and outputs it as specified output type.
@@ -51,12 +53,11 @@ def convert_temperature(temperature, output_format='c'):
 
         Examples:
             >>> convert_temperature('32F', 'c')
-            0.0
-            
+            0.0            
     """
     temperature = temperature[0:-1]
     if output_format is 'c':
-        result = farenheit_to_celsius(temperature)
+        result = fahrenheit_to_celsius(temperature)
     elif output_format is 'f':
         result = celsius_to_fahrenheit(temperature)
     else:
