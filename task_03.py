@@ -53,7 +53,7 @@ def convert_temperature(temperature, output_format='c'):
 
         Examples:
             >>> convert_temperature('32F', 'c')
-            0.0            
+            0.0           
     """
     temperature = temperature[0:-1]
     temperature = float(temperature)
