@@ -69,7 +69,7 @@ def get_interest_rate(principal, duration, prequalification=True):
 
 
 
-def compound_interest(principal, duration, prequalification, interval=12):
+def compound_interest(principal, duration, rate, interval=12):
     """Calculates the compound interest.
 
         Args:
@@ -90,8 +90,8 @@ def compound_interest(principal, duration, prequalification, interval=12):
             None
     """
 
-    intrate = Decimal(get_interest_rate(principal, duration, prequalification))
-    total = Decimal(principal * ((1 + intrate / interval) ** (
+    rate = Decimal(get_interest_rate(principal, duration, prequalification))
+    total = Decimal(principal * ((1 + rate / interval) ** (
         interval * duration)))
     return Decimal(total)
 
@@ -118,7 +118,7 @@ def calculate_total(principal, duration, prequalification):
             None           
     """
     
-    intrate = Decimal(get_interest_rate(principal, duration, prequalification))
+    rate = Decimal(get_interest_rate(principal, duration, prequalification))
     total = Decimal(compound_interest(
         principal, duration, prequalification, interval=12))
     return int(total)
@@ -144,7 +144,7 @@ def calculate_interest(principal, duration, prequalification):
             None         
     """
 
-    intrate = Decimal(get_interest_rate(principal, duration, prequalification))
+    rate = Decimal(get_interest_rate(principal, duration, prequalification))
     interest = Decimal(calculate_total(
         principal, duration, prequalification) - principal)
     return int(interest)
