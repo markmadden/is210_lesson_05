@@ -146,5 +146,5 @@ def calculate_interest(principal, duration, prequalification):
     if rate is not None:
         total = compound_interest(principal, duration, rate, interval=12)
         interest = int(calculate_total(
-            principal, duration, prequalification) - principal))
+            principal, duration, prequalification) - principal)
     return interest
