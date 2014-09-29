@@ -63,8 +63,10 @@ def get_interest_rate(principal, duration, prequalification):
                 rate = Decimal('0.0262')
     else:
         rate = None
-    global rate
-    return rate
+    if rate is None:
+        print 'None'
+    else:
+        return rate
 
 
 def compound_interest(principal, duration, rate, interval=12):
@@ -112,12 +114,12 @@ def calculate_total(principal, duration, prequalification):
             >>> calculate_total(1000000,20,False)
             None           
     """
-
-    global rate
-    rate = Decimal(get_interest_rate(principal, duration, prequalification))
-    total = Decimal(compound_interest(
-        principal, duration, rate, interval=12))
-    return int(total)
+    rate = get_interest_rate(principal, duration, prequalification)
+    total = None
+    if rate is not None:
+        total = round(compound_interest(
+                principal, duration, rate, interval=12))
+    return total
 
 
 def calculate_interest(principal, duration, prequalification):
@@ -139,9 +141,10 @@ def calculate_interest(principal, duration, prequalification):
             None         
     """
 
-    global rate
-    rate = Decimal(get_interest_rate(principal, duration, prequalification))
-    total = Decimal(compound_interest(principal, duration, rate, interval=12))
-    interest = Decimal(calculate_total(
-        principal, duration, prequalification) - principal)
+    rate = get_interest_rate(principal, duration, prequalification)
+    total = None
+    if rate is not None:
+        total = compound_interest(principal, duration, rate, interval=12)
+        interest = calculate_total(
+            principal, duration, prequalification) - principal)
     return int(interest)
