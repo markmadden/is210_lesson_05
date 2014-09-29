@@ -3,8 +3,7 @@
 """Task 01 Code."""
 
 
-def bool_to_str(bvalue, short=False):
-    
+def bool_to_str(bvalue, short=False):    
     """Converts a boolean to a string (short or long).
 
     Args:
