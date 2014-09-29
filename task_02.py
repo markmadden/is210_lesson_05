@@ -4,9 +4,9 @@
 
 from decimal import Decimal
 
+
+
 def get_interest_rate(principal, duration, prequalification=True):
-
-
     """Finds the interest rate.
 
         Args:
@@ -66,9 +66,10 @@ def get_interest_rate(principal, duration, prequalification=True):
         rate = None
     return rate
 
+
+
+
 def compound_interest(principal, duration, prequalification, interval=12):
-
-
     """Calculates the compound interest.
 
         Args:
@@ -94,9 +95,10 @@ def compound_interest(principal, duration, prequalification, interval=12):
         interval * duration)))
     return Decimal(total)
 
+
+
+
 def calculate_total(principal, duration, prequalification):
-
-
     """Returns the total amount owed over the life of the loan.
 
         Args:
@@ -122,9 +124,8 @@ def calculate_total(principal, duration, prequalification):
     return int(total)
 
 
+
 def calculate_interest(principal, duration, prequalification):
-
-
     """Returns just the interest owed over the life of the loan.
 
         Args:
@@ -140,7 +141,7 @@ def calculate_interest(principal, duration, prequalification):
             8173
 
             >>> calculate_interest(1000000,20,False)
-            None           
+            None         
     """
 
     intrate = Decimal(get_interest_rate(principal, duration, prequalification))
