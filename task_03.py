@@ -7,7 +7,7 @@ def celsius_to_fahrenheit(temperature):
     """Converts temperatures from celsius to fahrenheit.
 
     Args:
-        temperature(num): A numeric type that reads in a temperature in celsius. 
+        temperature(num): A numeric type that reads in a temperature in celsius.
 
     Returns:
         float: Converts the temperature and output is in fahrenheit.
@@ -45,7 +45,7 @@ def fahrenheit_to_celsius(temperature):
 
 
 def convert_temperature(temperature, output_format='c'):
-    """Converts temperatures from fahrenheit to celsiu or vice versa. 
+    """Converts temperatures from fahrenheit to celsiu or vice versa.
 
     Args:
         temperature(num): A numeric type that reads in a temperature in
@@ -55,7 +55,7 @@ def convert_temperature(temperature, output_format='c'):
 
     Returns:
         float: Converts the temperature and output is in celsius or fahrenheit.
-            Returns None if conditions are not met. 
+            Returns None if conditions are not met.
 
     Example:
 
@@ -86,7 +86,7 @@ def convert_temperature(temperature, output_format='c'):
         if output_format == 'f':
             outputtemp = celsius_to_fahrenheit(temperature)
         elif output_format == 'c':
-            outputtemp = temperature     
+            outputtemp = temperature    
         else:
             outputtemp = None
     else:
