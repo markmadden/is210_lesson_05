@@ -2,65 +2,142 @@
 # -*- coding: utf-8 -*-
 """Provides loan management features."""
 
-import decimal
+from decimal import Decimal
 
 
-# Your functions should not take string representations of these values
-# Delete these lines when function conversion is complete
-PSTR = raw_input('What is the amount of your principal?: ')
-DSTR = raw_input('For how many years is this loan being borrowed?: ')
-QSTR = raw_input('Are you prequalified for this loan?: ')
+def get_interest_rate(principal, duration, prequalification):
+    """Finds the interest rate.
 
-# Function arguments should not need the following three transformations
-# Delete these lines when function conversion is complete
-PRINCIPAL = int(PSTR)
-DURATION = int(DSTR)
-PREQUALIFICATION = True if QSTR.lower()[0] == 'y' else False
+        Args:
+            principal (num): the value of the principal
+            duration (num): the duration of the loan
+            rate (num): the duration of the loan
 
-# Function conversion work you do should start here
-INTERVAL = 12
-RATE = None
-TOTAL = None
+        Returns:
+            A decimal form of the interest rate or None if none exists.
 
-if PRINCIPAL >= 0 and PRINCIPAL <= 199999:
-    if DURATION >= 1 and DURATION <= 15:
-        if PREQUALIFICATION:
-            RATE = '0.0363'
-        else:
-            RATE = '0.0465'
-    elif DURATION >= 16 and DURATION <= 20:
-        if PREQUALIFICATION:
-            RATE = '0.0404'
-        else:
-            RATE = '0.0498'
-    elif DURATION >= 21 and DURATION <= 30:
-        if PREQUALIFICATION:
-            RATE = '0.0577'
-        else:
-            RATE = '0.0639'
-elif PRINCIPAL >= 200000 and PRINCIPAL <= 999999:
-    if DURATION >= 1 and DURATION <= 15:
-        if PREQUALIFICATION:
-            RATE = '0.0302'
-        else:
-            RATE = '0.0398'
-    elif DURATION >= 16 and DURATION <= 20:
-        if PREQUALIFICATION:
-            RATE = '0.0327'
-        else:
-            RATE = '0.0408'
-    elif DURATION >= 21 and DURATION <= 30:
-        if PREQUALIFICATION:
-            RATE = '0.0466'
-elif PRINCIPAL >= 1000000:
-    if DURATION >= 1 and DURATION <= 15:
-        if PREQUALIFICATION:
-            RATE = '0.0205'
-    elif DURATION >= 16 and DURATION <= 20:
-        if PREQUALIFICATION:
-            RATE = '0.0262'
+        Examples:
+            >>> get_interest_rate(15000,12,True)
+            Decimal('0.0363')
 
-if RATE is not None:
-    RATE = decimal.Decimal(R)
-    TOTAL = PRINCIPAL * ((1 + RATE / INTERVAL) ** (INTERVAL * DURATION))
-    TOTAL = int(round(TOTAL))
+            >>> get_interest_rate(1000000,20,False)
+            None
+    """
+    rate = None
+    if principal >= 0 and principal <= 199999:
+        if duration >= 1 and duration <= 15:
+            if prequalification:
+                rate = Decimal('0.0363')
+            else:
+                rate = Decimal('0.0465')
+        elif duration >= 16 and duration <= 20:
+            if prequalification:
+                rate = Decimal('0.0404')
+            else:
+                rate = Decimal('0.0498')
+        elif duration >= 21 and duration <= 30:
+            if prequalification:
+                rate = Decimal('0.0577')
+            else:
+                rate = Decimal('0.0639')
+    elif principal >= 200000 and principal <= 999999:
+        if duration >= 1 and duration <= 15:
+            if prequalification:
+                rate = Decimal('0.0302')
+            else:
+                rate = Decimal('0.0398')
+        elif duration >= 16 and duration <= 20:
+            if prequalification:
+                rate = Decimal('0.0327')
+            else:
+                rate = Decimal('0.0408')
+        elif duration >= 21 and duration <= 30:
+            if prequalification:
+                rate = Decimal('0.0466')
+    elif principal >= 1000000:
+        if duration >= 1 and duration <= 15:
+            if prequalification:
+                rate = Decimal('0.0205')
+        elif duration >= 16 and duration <= 20:
+            if prequalification:
+                rate = Decimal('0.0262')
+    return rate
+
+
+def compound_interest(principal, duration, rate, interval=12):
+    """Calculates the compound interest.
+
+        Args:
+            principal (num): the value of the principal
+            duration (num): the duration of the loan
+            rate (num): the duration of the loan
+            interval (num): the number of times that interest is compounded
+                    annually; defaults to 12
+
+        Returns:
+            The compounded interest and principal(combined) as a numeric type.
+
+        Examples:
+            >>> compound_interest(15000,12,True)
+            Decimal('23173.11294385677746184557196')
+
+            >>> compound_interest(1000000,20,False)
+            None
+    """
+
+    total = Decimal(principal * ((1 + rate / interval) ** (
+        interval * duration)))
+    return Decimal(total)
+
+
+def calculate_total(principal, duration, prequalification):
+    """Returns the total amount owed over the life of the loan.
+
+        Args:
+            principal (num): the value of the principal
+            duration (num): the duration of the loan
+            rate (num): the duration of the loan
+
+        Returns:
+            The total amount, rounded to the nearest integer.  In the event that
+            there is no interest rate for the passed argument, returns None.
+
+        Examples:
+            >>> calculate_total(15000,12,True)
+            23173
+
+            >>> calculate_total(1000000,20,False)
+            None
+    """
+    rate = get_interest_rate(principal, duration, prequalification)
+    total = None
+    if rate is not None:
+        total = round(compound_interest(
+            principal, duration, rate, interval=12))
+    return total
+
+
+def calculate_interest(principal, duration, prequalification):
+    """Returns just the interest owed over the life of the loan.
+
+        Args:
+            principal (num): the value of the principal
+            duration (num): the duration of the loan
+            rate (num): the duration of the loan
+
+        Returns:
+            Only the interest owed over the life of the loan as an integer.
+
+        Examples:
+            >>> calculate_interest(15000,12,True)
+            8173
+
+            >>> calculate_interest(1000000,20,False)
+            None
+    """
+    interest = None
+    rate = get_interest_rate(principal, duration, prequalification)
+    if rate is not None:
+        interest = int(calculate_total(
+            principal, duration, prequalification) - principal)
+    return interest
