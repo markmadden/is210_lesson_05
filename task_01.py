@@ -2,6 +2,7 @@
 # -*- encoding: utf-8 -*-
 """ Task1 of week 5"""
 
+
 def bool_to_str(bvalue, short=False):
 
     """Gives the string value of True or False
